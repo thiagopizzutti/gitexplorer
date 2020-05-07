@@ -9,7 +9,9 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: #a8a8b3;
+    color: grey;
+    font-size: 20px;
+    font-weight: bold;
     transition: linear 0.3s;
 
     &:hover {

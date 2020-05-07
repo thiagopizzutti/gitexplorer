@@ -36,29 +36,38 @@ const Repository: React.FC = () => {
   const [issue, setIssue] = useState<Issue[]>([]);
   const { params } = useRouteMatch<RepositoryParams>();
 
-  useEffect(() => {
-    async function loadData(): Promise<void> {
-      const [repository, issues] = await Promise.all([
-        api
-          .get(`repos/${params.repository}`)
-          .then((response) => setRepository(response.data)),
-        api
-          .get(`repos/${params.repository}/issues`)
-          .then((response) => setIssue(response.data)),
-      ]);
-    }
+  // useEffect(() => {
+  //   async function loadData(): Promise<void> {
+  //     const [repository, issues] = await Promise.all([
+  //       api
+  //         .get(`repos/${params.repository}`)
+  //         .then((response) => setRepository(response.data)),
+  //       api
+  //         .get(`repos/${params.repository}/issues`)
+  //         .then((response) => setIssue(response.data)),
+  //     ]);
+  //   }
 
-    loadData();
+  //   loadData();
+  // }, [params.repository]);
+
+  useEffect(() => {
+    api.get(`repos/${params.repository}`).then((response) => {
+      setRepository(response.data);
+    });
+
+    api.get(`repos/${params.repository}/issues`).then((response) => {
+      setIssue(response.data);
+    });
   }, [params.repository]);
 
   return (
     <>
       <Header>
-        <img src={logo} alt="Github Explorer" />
-
         <Link to="/">
           <FiChevronLeft size={16} /> Voltar
         </Link>
+        <img src={logo} alt="Github Explorer" />
       </Header>
 
       {repository && (

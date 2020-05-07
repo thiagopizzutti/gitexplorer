@@ -50,17 +50,22 @@ export const Form = styled.form<FormProps>`
   button {
     width: 210px;
     height: 70px;
-    background: #04d361;
+    background-image: linear-gradient(
+      to top,
+      #a7a6cb 0%,
+      #8989ba 52%,
+      #8989ba 100%
+    );
     border-radius: 0 5px 5px 0;
     border: 0;
     color: #fff;
     font-size: 30px;
     font-weight: bold;
-    transition: linear 0.2s;
+    transition: background 0.9s;
     box-shadow: 1px 1px 3px 2px grey;
 
     &:hover {
-      background: ${shade(0.2, '#04d361')};
+      background: ${shade(0.2, '#8989ba')};
     }
   }
 `;
